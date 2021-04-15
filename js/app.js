@@ -56,6 +56,7 @@ function sendEmail(e) {
         setTimeout(function() {
             sendEmailForm.reset();
             sendEmailImg.remove();
+            sendBtn.disabled = true;
         }, 5000);
 
     }, 3000 );
@@ -77,7 +78,7 @@ function validateField() {
     errors = document.querySelectorAll('.error');
 
     //Check that the inputs are not empty
-    if(email.value !== '' && subject.value !== '' && message !== '') {
+    if(email.value !== '' && subject.value !== '' && message.value !== '') {
         if(errors.length === 0) {
             sendBtn.disabled = false;
         }
@@ -112,6 +113,11 @@ function validateEmail(field) {
 }
 
 //Reset the form
-function resetForm() {
-    sendEmailForm.reset();
+function resetForm(e) {
+    e.preventDefault();
+
+     sendEmailForm.reset();
+     // disable the send button on load
+    sendBtn.disabled = true;
+
 }
